@@ -1,0 +1,304 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Indian Railways AI Dashboard Design System - Dark theme with blue/green accents */
+
+@layer base {
+  :root {
+    /* Dark theme base colors */
+    --background: 220 15% 8%;
+    --foreground: 210 40% 95%;
+
+    /* Card backgrounds with subtle elevation */
+    --card: 220 15% 10%;
+    --card-foreground: 210 40% 95%;
+    --card-elevated: 220 15% 12%;
+
+    /* Popover colors */
+    --popover: 220 15% 10%;
+    --popover-foreground: 210 40% 95%;
+
+    /* Railway blue primary theme */
+    --primary: 210 95% 55%;
+    --primary-foreground: 220 15% 8%;
+    --primary-glow: 210 95% 65%;
+    --primary-dark: 210 95% 45%;
+
+    /* Neon blue accent for scheduling interface */
+    --neon-blue: 194 100% 60%;
+    --neon-blue-glow: 194 100% 80%;
+
+    /* Enhanced train status colors */
+    --train-express: 0 84% 60%;
+    --train-local: 217 91% 60%;
+    --train-freight: 45 93% 58%;
+    --train-active-glow: 142 76% 36%;
+    --train-delayed: 0 84% 40%;
+    --train-completed: 142 69% 58%;
+
+    /* Railway green secondary theme */
+    --secondary: 150 80% 45%;
+    --secondary-foreground: 220 15% 8%;
+    --secondary-glow: 150 80% 55%;
+    --secondary-dark: 150 80% 35%;
+
+    /* Orange accent for simulation controls */
+    --orange: 25 95% 53%;
+    --orange-foreground: 220 15% 8%;
+    --orange-glow: 25 95% 63%;
+    --orange-dark: 25 95% 43%;
+
+    /* Muted tones for subtle elements */
+    --muted: 220 15% 15%;
+    --muted-foreground: 210 20% 65%;
+
+    /* Accent colors for highlights */
+    --accent: 210 95% 55%;
+    --accent-foreground: 220 15% 8%;
+
+    /* Status colors */
+    --success: 150 80% 45%;
+    --success-foreground: 220 15% 8%;
+    --warning: 45 95% 55%;
+    --warning-foreground: 220 15% 8%;
+    --destructive: 0 85% 60%;
+    --destructive-foreground: 210 40% 98%;
+    
+    /* Industrial theme colors for allocations */
+    --industrial-gray: 71 85 105;
+    --industrial-dark: 51 65 85;
+    --caution-yellow: 234 179 8;
+    --caution-yellow-dark: 202 138 4;
+
+    /* Border and input styles */
+    --border: 220 15% 20%;
+    --input: 220 15% 15%;
+    --ring: 210 95% 55%;
+
+    /* Sidebar specific colors */
+    --sidebar-background: 220 15% 6%;
+    --sidebar-foreground: 210 40% 90%;
+    --sidebar-primary: 210 95% 55%;
+    --sidebar-primary-foreground: 220 15% 6%;
+    --sidebar-accent: 220 15% 12%;
+    --sidebar-accent-foreground: 210 40% 90%;
+    --sidebar-border: 220 15% 18%;
+    --sidebar-ring: 210 95% 55%;
+
+    /* Custom gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    --gradient-secondary: linear-gradient(135deg, hsl(var(--secondary)), hsl(var(--secondary-glow)));
+    --gradient-orange: linear-gradient(135deg, hsl(var(--orange)), hsl(var(--orange-glow)));
+    --gradient-card: linear-gradient(145deg, hsl(var(--card)), hsl(var(--card-elevated)));
+    --gradient-glass: linear-gradient(145deg, hsla(var(--card), 0.8), hsla(var(--card-elevated), 0.6));
+
+    /* Shadows and effects */
+    --shadow-primary: 0 10px 30px -10px hsl(var(--primary) / 0.3);
+    --shadow-secondary: 0 10px 30px -10px hsl(var(--secondary) / 0.3);
+    --shadow-orange: 0 10px 30px -10px hsl(var(--orange) / 0.3);
+    --shadow-neon-blue: 0 0 20px hsl(var(--neon-blue) / 0.5);
+    --shadow-card: 0 8px 25px -8px hsl(220 15% 0% / 0.4);
+    --shadow-elevated: 0 15px 40px -10px hsl(220 15% 0% / 0.5);
+
+    /* Animation timing */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+    --radius: 0.75rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-muted;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-muted-foreground/30 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-muted-foreground/50;
+  }
+}
+
+@layer components {
+  /* Glass morphism cards */
+  .glass-card {
+    background: var(--gradient-glass);
+    backdrop-filter: blur(20px);
+    border: 1px solid hsl(var(--border) / 0.5);
+    box-shadow: var(--shadow-card);
+  }
+
+  /* Elevated cards with primary glow */
+  .elevated-card {
+    background: var(--gradient-card);
+    box-shadow: var(--shadow-elevated);
+    border: 1px solid hsl(var(--border));
+  }
+
+  /* Primary gradient button */
+  .btn-primary-gradient {
+    background: var(--gradient-primary);
+    box-shadow: var(--shadow-primary);
+    transition: var(--transition-smooth);
+  }
+
+  .btn-primary-gradient:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-primary), 0 5px 15px -5px hsl(var(--primary) / 0.4);
+  }
+
+  /* Orange gradient button */
+  .btn-orange-gradient {
+    background: var(--gradient-orange);
+    box-shadow: var(--shadow-orange);
+    transition: var(--transition-smooth);
+  }
+
+  .btn-orange-gradient:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-orange), 0 5px 15px -5px hsl(var(--orange) / 0.4);
+  }
+
+  /* Pulse animation for alerts */
+  .pulse-alert {
+    animation: pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  /* Train icon animation */
+  .train-moving {
+    animation: train-move 3s linear infinite;
+  }
+
+  /* Status indicators */
+  .status-online {
+    @apply bg-success text-success-foreground;
+    box-shadow: 0 0 10px hsl(var(--success) / 0.5);
+  }
+
+  .status-warning {
+    @apply bg-warning text-warning-foreground;
+    box-shadow: 0 0 10px hsl(var(--warning) / 0.5);
+  }
+
+  .status-error {
+    @apply bg-destructive text-destructive-foreground;
+    box-shadow: 0 0 10px hsl(var(--destructive) / 0.5);
+  }
+
+  /* Interactive hover effects */
+  .hover-lift {
+    transition: var(--transition-smooth);
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-4px);
+  }
+
+  /* Railway track styling */
+  .railway-track {
+    background: linear-gradient(90deg, 
+      hsl(var(--muted)) 0%, 
+      hsl(var(--muted-foreground)) 50%, 
+      hsl(var(--muted)) 100%
+    );
+  }
+}
+
+@layer utilities {
+  /* Custom animations */
+  @keyframes pulse-glow {
+    0%, 100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.8;
+      transform: scale(1.05);
+    }
+  }
+
+  @keyframes train-move {
+    0% {
+      transform: translateX(-10px);
+    }
+    50% {
+      transform: translateX(10px);
+    }
+    100% {
+      transform: translateX(-10px);
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slide-in-right {
+    from {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  /* Animation utilities */
+  .animate-fade-in {
+    animation: fade-in 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .animate-slide-in-right {
+    animation: slide-in-right 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Gradient text utilities */
+  .text-gradient-primary {
+    background: var(--gradient-primary);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .text-gradient-secondary {
+    background: var(--gradient-secondary);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .text-gradient-orange {
+    background: var(--gradient-orange);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
